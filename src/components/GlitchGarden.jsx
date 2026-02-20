@@ -40,28 +40,27 @@ const GlitchGarden = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
         {projects.map((item, index) => (
-          <motion.div 
+          <div 
             key={index} 
-            whileHover={{ 
-              x: [0, -4, 4, -2, 2, 0],
-              y: [0, 2, -2, 1, -1, 0],
-              opacity: [1, 0.7, 1, 0.8, 1],
-              skewX: [0, -1, 1, 0],
-              transition: { duration: 0.25, repeat: Infinity, repeatType: "mirror" }
-            }}
-            className="bg-neutral-800/40 border border-pink-900/30 p-6 hover:border-pink-500/50 transition-colors group cursor-crosshair relative overflow-hidden"
+            className="group relative bg-neutral-800/40 border border-pink-900/30 min-h-[220px] hover:border-pink-500 transition-colors overflow-hidden cursor-crosshair"
           >
-            {/* Scanline overlay triggered on hover */}
-            <motion.div 
-              className="absolute inset-0 bg-pink-500/10 opacity-0 group-hover:opacity-100 mix-blend-overlay pointer-events-none"
-              whileHover={{ opacity: [0, 0.4, 0.1, 0.5, 0] }}
-              transition={{ duration: 0.15, repeat: Infinity }}
-            />
-            
-            <h4 className="text-pink-400 font-mono text-sm mb-2 opacity-80 group-hover:opacity-100 relative z-10">{item.tech}</h4>
-            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-pink-200 transition-colors relative z-10">{item.title}</h3>
-            <p className="text-neutral-400 text-sm leading-relaxed relative z-10">{item.desc}</p>
-          </motion.div>
+            {/* The "Normal" Content - Fades out instantly on hover */}
+            <div className="absolute inset-0 p-6 flex flex-col justify-start group-hover:opacity-0 transition-opacity duration-100 z-10">
+              <h4 className="text-pink-400 font-mono text-sm mb-2">{item.tech}</h4>
+              <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+              <p className="text-neutral-400 text-sm leading-relaxed">{item.desc}</p>
+            </div>
+
+            {/* The "Glitch" Terminal Content - Flashes in instantly on hover */}
+            <div className="absolute inset-0 bg-pink-900/20 p-6 flex flex-col justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-0 z-20">
+              <h3 className="text-xl font-bold text-pink-400 font-mono">ACCESSING...</h3>
+              <p className="text-xs font-mono text-green-400 mt-2">
+                &gt; {item.title.toUpperCase().replace(/\s+/g, '_')}_ROOT <br/>
+                &gt; DECRYPTING_ASSETS... <br/>
+                &gt; VIEW_GITHUB_REPO
+              </p>
+            </div>
+          </div>
         ))}
       </div>
 
