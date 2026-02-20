@@ -40,11 +40,20 @@ const GlitchGarden = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
         {projects.map((item, index) => (
-          <div key={index} className="bg-neutral-800/40 border border-pink-900/30 p-6 hover:border-pink-500/50 transition-colors group">
+          <motion.div 
+            key={index} 
+            whileHover={{ 
+              x: [0, -3, 3, -2, 0],
+              opacity: [1, 0.8, 1, 0.9, 1],
+              skewX: [0, -2, 2, 0],
+              transition: { duration: 0.3, repeat: Infinity }
+            }}
+            className="bg-neutral-800/40 border border-pink-900/30 p-6 hover:border-pink-500/50 transition-colors group cursor-crosshair relative overflow-hidden"
+          >
             <h4 className="text-pink-400 font-mono text-sm mb-2 opacity-80 group-hover:opacity-100">{item.tech}</h4>
-            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-pink-200 transition-colors">{item.title}</h3>
-            <p className="text-neutral-400 text-sm leading-relaxed">{item.desc}</p>
-          </div>
+            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-pink-200 transition-colors relative z-10">{item.title}</h3>
+            <p className="text-neutral-400 text-sm leading-relaxed relative z-10">{item.desc}</p>
+          </motion.div>
         ))}
       </div>
 
