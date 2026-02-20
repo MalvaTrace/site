@@ -44,8 +44,8 @@ const App = () => {
               exit={{ opacity: 0, y: -20 }}
               className="flex flex-col items-center justify-center min-h-[60vh] text-center"
             >
-              {/* VEO VIDEO INTEGRATION - MAXIMIZED VIEWPORT */}
-              <div className="w-[90vw] h-[90vw] md:w-[600px] md:h-[600px] rounded-full bg-black mb-10 border border-pink-500/30 shadow-[0_0_60px_rgba(236,72,153,0.15)] overflow-hidden relative group flex-shrink-0">
+              {/* VEO VIDEO INTEGRATION - OVAL VIEWPORT */}
+              <div className="w-[95vw] h-[60vw] md:w-[800px] md:h-[450px] rounded-[50%] bg-black mb-10 border border-pink-500/30 shadow-[0_0_60px_rgba(236,72,153,0.15)] overflow-hidden relative group flex-shrink-0">
                 <video 
                   autoPlay 
                   loop 
