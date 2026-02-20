@@ -44,12 +44,10 @@ const App = () => {
               exit={{ opacity: 0, y: -20 }}
               className="flex flex-col items-center justify-center min-h-[60vh] text-center"
             >
-              {/* VEO VIDEO INTEGRATION - OVAL VIEWPORT */}
+              {/* VEO VIDEO INTEGRATION - OVAL VIEWPORT, NO LOOP, UNMUTED */}
               <div className="w-[95vw] h-[60vw] md:w-[800px] md:h-[450px] rounded-[50%] bg-black mb-10 border border-pink-500/30 shadow-[0_0_60px_rgba(236,72,153,0.15)] overflow-hidden relative group flex-shrink-0">
                 <video 
                   autoPlay 
-                  loop 
-                  muted 
                   playsInline
                   className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-500"
                 >
@@ -85,7 +83,8 @@ const App = () => {
         </AnimatePresence>
       </main>
       
-      <footer className="fixed bottom-4 left-6 text-[10px] text-neutral-600 font-mono">
+      {/* TELEMETRY FOOTER - REPOSITIONED TO RIGHT */}
+      <footer className="fixed bottom-4 right-6 text-[10px] text-neutral-600 font-mono">
         <p>SYSTEM: ONLINE // <span className="text-pink-900">MALVA BLACK: RESTRICTED</span></p>
       </footer>
     </div>
