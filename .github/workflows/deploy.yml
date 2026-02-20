@@ -1,9 +1,12 @@
+# Author: mauvehack
+# File: .github/workflows/deploy.yml
+
 name: Deploy Malva Trace
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -18,22 +21,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
-
-      - name: Setup Node
+        
+      - name: Setup Node.js Matrix
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
-
+          
       - name: Install Dependencies
         run: npm ci
-
-      - name: Build
+        
+      - name: Compile React Payload
         run: npm run build
-
-      - name: Upload Artifact
+        
+      - name: Upload Build Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
@@ -42,9 +45,10 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Execute Deployment
         id: deployment
         uses: actions/deploy-pages@v4
