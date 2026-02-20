@@ -43,14 +43,22 @@ const GlitchGarden = () => {
           <motion.div 
             key={index} 
             whileHover={{ 
-              x: [0, -3, 3, -2, 0],
-              opacity: [1, 0.8, 1, 0.9, 1],
-              skewX: [0, -2, 2, 0],
-              transition: { duration: 0.3, repeat: Infinity }
+              x: [0, -4, 4, -2, 2, 0],
+              y: [0, 2, -2, 1, -1, 0],
+              opacity: [1, 0.7, 1, 0.8, 1],
+              skewX: [0, -1, 1, 0],
+              transition: { duration: 0.25, repeat: Infinity, repeatType: "mirror" }
             }}
             className="bg-neutral-800/40 border border-pink-900/30 p-6 hover:border-pink-500/50 transition-colors group cursor-crosshair relative overflow-hidden"
           >
-            <h4 className="text-pink-400 font-mono text-sm mb-2 opacity-80 group-hover:opacity-100">{item.tech}</h4>
+            {/* Scanline overlay triggered on hover */}
+            <motion.div 
+              className="absolute inset-0 bg-pink-500/10 opacity-0 group-hover:opacity-100 mix-blend-overlay pointer-events-none"
+              whileHover={{ opacity: [0, 0.4, 0.1, 0.5, 0] }}
+              transition={{ duration: 0.15, repeat: Infinity }}
+            />
+            
+            <h4 className="text-pink-400 font-mono text-sm mb-2 opacity-80 group-hover:opacity-100 relative z-10">{item.tech}</h4>
             <h3 className="text-xl font-bold text-white mb-3 group-hover:text-pink-200 transition-colors relative z-10">{item.title}</h3>
             <p className="text-neutral-400 text-sm leading-relaxed relative z-10">{item.desc}</p>
           </motion.div>
